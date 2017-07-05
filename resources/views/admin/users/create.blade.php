@@ -14,12 +14,12 @@
 
         <div class="form-group">
             {!! Form::Label('email', 'Email:') !!}
-            {!! Form::text('email', null, ['class'=>'form-control'])!!}
+            {!! Form::email('email', null, ['class'=>'form-control'])!!}
         </div>
 
         <div class="form-group">
-            {!! Form::Label('file', 'Upload File:') !!}
-            {!! Form::file('file', null, ['class'=>'form-control'])!!}
+            {!! Form::Label('photo_id', 'Upload File:') !!}
+            {!! Form::file('photo_id', null, ['class'=>'form-control'])!!}
         </div>
 
         <div class="form-group">
