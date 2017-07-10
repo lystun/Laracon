@@ -2,5 +2,5 @@
 
 
 @section('content')
-    <h1>Edit Posts</h1>
+    <h1>Edit Post</h1>
 @endsection
