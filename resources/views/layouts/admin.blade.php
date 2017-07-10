@@ -42,24 +42,33 @@
         </div>
         <!-- /.navbar-header -->
 
-        <ul class="nav navbar-top-links navbar-right">
+        <!-- Right Side Of Navbar -->
+        <ul class="nav navbar-nav navbar-right">
+            <!-- Authentication Links -->
+            @if (Auth::guest())
+                <li><a href="{{ url('/login') }}">Login</a></li>
+                <li><a href="{{ url('/register') }}">Register</a></li>
+            @else
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                        {{ Auth::user()->name }} <span class="caret"></span>
+                    </a>
 
-            <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                    <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
-                </a>
-                <ul class="dropdown-menu dropdown-user">
-                    <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
-                    </li>
-                    <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
-                    </li>
-                    <li class="divider"></li>
-                    <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
-                    </li>
-                </ul>
-                <!-- /.dropdown-user -->
-            </li>
-            <!-- /.dropdown -->
+                    <ul class="dropdown-menu" role="menu">
+                        <li>
+                            <a href="{{ url('/logout') }}"
+                               onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                Logout
+                            </a>
+
+                            <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                                {{ csrf_field() }}
+                            </form>
+                        </li>
+                    </ul>
+                </li>
+            @endif
         </ul>
         <!-- /.navbar-top-links -->
 
@@ -87,7 +96,7 @@
                                 <a href="{!! url('admin/users')!!}">All Users</a>
                             </li>
                             <li>
-                                <a href="{{URL::to('/admin/users/create')}}">Create User</a>
+                                <a href="{{url('/admin/users/create')}}">Create User</a>
                             </li>
                         </ul>
                         <!-- /.nav-second-level -->
@@ -96,13 +105,13 @@
 
 
                     <li>
-                        <a href="#"><i class="fa fa-wrench fa-fw"></i> Posts<span class="fa arrow"></span></a>
+                        <a href="{{url('admin/posts')}}"><i class="fa fa-wrench fa-fw"></i> Posts<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="panels-wells.html">All Posts</a>
+                                <a href="{{url('admin/posts')}}">All Posts</a>
                             </li>
                             <li>
-                                <a href="buttons.html">Create Post</a>
+                                <a href="{{url('admin/posts/create')}}">Create Post</a>
                             </li>
                         </ul>
                         <!-- /.nav-second-level -->
@@ -244,6 +253,7 @@
 <!-- /#wrapper -->
 
 <!-- jQuery -->
+<script src="{{asset('js/app.js')}}"></script>
 <script src="{{asset('js/libs.js')}}"></script>
 
 </body>
